@@ -21,7 +21,6 @@ namespace TimeTable
 
         static void ShowMenu()
         {
-
             Console.WriteLine();
             // Ask the user to choose an option.
             Console.WriteLine("What would you like to do, please select from the list:");
@@ -30,7 +29,6 @@ namespace TimeTable
             Console.WriteLine("\tc - Add a new event to the calendar");
             Console.WriteLine("\td - Close myCalendar Project");
             Console.Write("You option? ");
-
             // Use a switch statement to do the math.
             switch (Console.ReadLine().ToLower())
             {
@@ -55,7 +53,6 @@ namespace TimeTable
             Console.WriteLine("You chose: View all saved events");
             Console.WriteLine();
             Console.WriteLine("Here is a list of saved events: ");
-
             // View all saved events
             Database databaseObject = new Database();
 
@@ -83,7 +80,6 @@ namespace TimeTable
 
             showEventsByDay(enteredDay);
             ShowMenu();
-
         }
 
         static void showEventsByDay(string enteredDay)
@@ -136,8 +132,7 @@ namespace TimeTable
                 case "N":
                     ShowMenu();
                     break;
-            }
-            
+            }  
         }
 
         static void CloseCalendar()
@@ -147,6 +142,5 @@ namespace TimeTable
             Console.Write("Please come back at any time");
             Console.WriteLine();
         }
-
     }
 }

@@ -13,7 +13,7 @@ namespace TimeTable
             Console.WriteLine("Hello Kamila today is " + (DateTime.Now).ToLongDateString());
             Console.WriteLine();
             Console.WriteLine("Calendar events for today: ");
-            var currentDay = DateTime.Now.ToString("YYYY-MM-DD");
+            var currentDay = DateTime.Now.ToString("yyyy-MM-dd");
             ShowEventsByDay(currentDay);
             ShowMenu();
         }

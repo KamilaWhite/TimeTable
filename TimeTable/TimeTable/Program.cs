@@ -5,7 +5,7 @@ namespace TimeTable
 {
     class Program
     {
-        //private Database databaseObject;
+        private Database databaseObject;
         static void Main(string[] args)
         {
             Console.WriteLine("Project myCalendar in C#\r");
@@ -13,34 +13,37 @@ namespace TimeTable
             Console.WriteLine("Hello Kamila today is " + (DateTime.Now).ToLongDateString());
             Console.WriteLine();
             Console.WriteLine("Calendar events for today: ");
-            var currentDay = DateTime.Now.ToString("YYYY-MM-DD");
-            ShowEventsByDay(currentDay);
+            var currentDay = DateTime.Now.ToString("yyyy-MM-dd");
+            showEventsByDay(currentDay);
+
             ShowMenu();
         }
 
         static void ShowMenu()
         {
+
             Console.WriteLine();
             // Ask the user to choose an option.
             Console.WriteLine("What would you like to do, please select from the list:");
-            Console.WriteLine("\tA - View all saved events");
-            Console.WriteLine("\tB - Display selected date");
-            Console.WriteLine("\tC - Add a new event to the calendar");
-            Console.WriteLine("\tD - Close myCalendar Project");
-            Console.Write("Your option? ");
+            Console.WriteLine("\ta - View all saved events");
+            Console.WriteLine("\tb - Display selected date");
+            Console.WriteLine("\tc - Add a new event to the calendar");
+            Console.WriteLine("\td - Close myCalendar Project");
+            Console.Write("You option? ");
+
             // Use a switch statement to do the math.
-            switch (Console.ReadLine().ToUpper())
+            switch (Console.ReadLine().ToLower())
             {
-                case "A":
+                case "a":
                     ShowAllEvents();
                     break;
-                case "B":
+                case "b":
                     SelectOneDay();
                     break;
                 case "c":
                     AddEvents();
                     break;
-                case "D":
+                case "d":
                     CloseCalendar();
                     break;
             }
@@ -48,11 +51,14 @@ namespace TimeTable
 
         static void ShowAllEvents()
         {
+            // View chosed option
+            Console.WriteLine("You chose: View all saved events");
             Console.WriteLine();
             Console.WriteLine("Here is a list of saved events: ");
-            Database databaseObject = new Database();
-            
+
             // View all saved events
+            Database databaseObject = new Database();
+
             string queryAllEvents = "SELECT * FROM myCalendar ORDER BY eventDate ASC";
             SQLiteCommand selectAllCommand = new SQLiteCommand(queryAllEvents, databaseObject.myConnection);
             databaseObject.OpenConnection();
@@ -70,16 +76,17 @@ namespace TimeTable
         // Display selected date
         static void SelectOneDay()
         {
-            // Ask the user to enter any date
+            // View chosed option
             string enteredDay;
             Console.WriteLine("Enter the date in the format YYYY-MM-DD: ");
             enteredDay = Console.ReadLine();
 
-            ShowEventsByDay(enteredDay);
+            showEventsByDay(enteredDay);
             ShowMenu();
+
         }
 
-        static void ShowEventsByDay(string enteredDay)
+        static void showEventsByDay(string enteredDay)
         {
             // Search and display the selected date
             Database databaseObject = new Database();
@@ -96,13 +103,7 @@ namespace TimeTable
                     Console.WriteLine("Event Data: {0} - Event Name: {1}", resultFromOneDay["eventDate"], resultFromOneDay["eventName"]);
                 }
             }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("You have no events for this day");
-            }
-            
-         }
+        }
 
         static void AddEvents()
         {
@@ -114,19 +115,16 @@ namespace TimeTable
 
             databaseObject.OpenConnection();
 
-            // Ask the user to enter a date 
             string eventDate;
             Console.WriteLine("Enter the day in the format YYYY-MM-DD: ");
             eventDate = Console.ReadLine();
             myCommand.Parameters.AddWithValue("@eventDate", eventDate);
 
-            // Ask user to enter a Event Name
             string eventName;
             Console.WriteLine("Enter a name for the event: ");
             eventName = Console.ReadLine();
             myCommand.Parameters.AddWithValue("@eventName", eventName);
 
-            // Ask the user if he wants to enter further events
             var result = myCommand.ExecuteNonQuery();
             Console.WriteLine("Rows /Added : {0}", result);
             Console.WriteLine("Do you want to add a new event? Y/N: ");
@@ -138,15 +136,17 @@ namespace TimeTable
                 case "N":
                     ShowMenu();
                     break;
-            }  
+            }
+            
         }
 
         static void CloseCalendar()
         {
-            // Close application
+            // Wait for the user to respond before closing.
             Console.WriteLine();
             Console.Write("Please come back at any time");
             Console.WriteLine();
         }
+
     }
 }

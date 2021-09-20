@@ -37,7 +37,7 @@ namespace TimeTable
                 case "B":
                     SelectOneDay();
                     break;
-                case "c":
+                case "C":
                     AddEvents();
                     break;
                 case "D":
@@ -145,7 +145,7 @@ namespace TimeTable
         {
             // Close application
             Console.WriteLine();
-            Console.Write("Please come back at any time");
+            Console.Write("myCalendar app will close. Please come back at any time");
             Console.WriteLine();
         }
     }

@@ -1,3 +1,5 @@
+# myCalendar app in C#
+
 The purpose of the project was to learn the **C# language** by creating an application nameded myCalendar. 
 In the project, I used a connection to the `SQLite database`, which is located in the folder `“example-db”`.
 ___

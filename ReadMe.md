@@ -2,7 +2,7 @@ The purpose of the project was to learn the **C# language** by creating an appli
 In the project, I used a connection to the `SQLite database`, which is located in the folder `“example-db”`.
 ___
 ### How it works
-When starting the application, you can see the **Welcome module** with today's date and calendar events, if they are saved for today. 
+When starting the application, you can see the **![Welcome module]()** with today's date and calendar events, if they are saved for today. 
 Then we can see a module with four options to choose from.
 
 **A.** If we select **"View all saved events"** on the console screen, we will see all the events entered into the database along with the dates.

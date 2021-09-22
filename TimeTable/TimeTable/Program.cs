@@ -72,11 +72,29 @@ namespace TimeTable
         {
             // Ask the user to enter any date
             string enteredDay;
+            DateTime dateValue;
+
             Console.WriteLine("Enter the date in the format YYYY-MM-DD: ");
             enteredDay = Console.ReadLine();
 
-            ShowEventsByDay(enteredDay);
-            ShowMenu();
+            if (DateTime.TryParse(enteredDay, out dateValue))
+            {
+                ShowEventsByDay(enteredDay);
+                ShowMenu();
+            }
+            else
+                Console.WriteLine("The date format is incorrect", enteredDay);
+                Console.WriteLine();
+                Console.WriteLine("You want to enter the date again? Y/N: ");
+                switch (Console.ReadLine().ToUpper())
+                {
+                case "Y":
+                    SelectOneDay();
+                    break;
+                case "N":
+                    ShowMenu();
+                    break;
+                }
         }
 
         static void ShowEventsByDay(string enteredDay)

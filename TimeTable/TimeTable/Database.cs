@@ -16,7 +16,6 @@ namespace TimeTable
                 System.Console.WriteLine("Database file created");
             }
         }
-
         public void OpenConnection()
         {
             if (myConnection.State != System.Data.ConnectionState.Open)
@@ -24,7 +23,6 @@ namespace TimeTable
                 myConnection.Open();
             }
         }
-
         public void CloseConnection()
         {
             if (myConnection.State != System.Data.ConnectionState.Closed)
